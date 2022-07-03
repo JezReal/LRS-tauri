@@ -7,7 +7,7 @@ model Books {
     bookId BigInt @id @db.BigInt @default(autoincrement())
     bookDescription String @db.VarChar(500) 
     bookQuantity BigInt @db.BigInt
-    transactions Transactions?
+    transactions Transactions[]
 }
 
 model Articles {
@@ -25,13 +25,13 @@ model Persons {
     personId BigInt @id @db.BigInt @default(autoincrement())
     firstName String 
     lastName String
-    transactions Transactions?
+    transactions Transactions[]
 }
 
 model Transactions {
     transactionId BigInt @id @db.BigInt @default(autoincrement())
-    bookId BigInt @db.BigInt @unique
-    personId BigInt @db.BigInt @unique
+    bookId BigInt @db.BigInt
+    personId BigInt @db.BigInt
     book Books @relation(fields: [bookId], references: [bookId])
     person Persons @relation(fields: [personId], references: [personId])
     dateBorrowed DateTime @db.Date()

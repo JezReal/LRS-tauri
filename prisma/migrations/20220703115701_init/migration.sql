@@ -14,8 +14,8 @@ CREATE TABLE `Articles` (
     `articleName` VARCHAR(500) NOT NULL,
     `propertyNumber` VARCHAR(100) NOT NULL,
     `bookQuantity` BIGINT NOT NULL,
-    `unitCost` DECIMAL(65, 30) NOT NULL,
-    `totalCost` DECIMAL(65, 30) NOT NULL,
+    `unitCost` DOUBLE NOT NULL,
+    `totalCost` DOUBLE NOT NULL,
     `remarks` TEXT NOT NULL,
 
     PRIMARY KEY (`articleId`)
@@ -36,11 +36,9 @@ CREATE TABLE `Transactions` (
     `bookId` BIGINT NOT NULL,
     `personId` BIGINT NOT NULL,
     `dateBorrowed` DATE NOT NULL,
-    `dateReturned` DATE NOT NULL,
+    `dateReturned` DATE NULL,
     `quantity` BIGINT NOT NULL,
 
-    UNIQUE INDEX `Transactions_bookId_key`(`bookId`),
-    UNIQUE INDEX `Transactions_personId_key`(`personId`),
     PRIMARY KEY (`transactionId`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
