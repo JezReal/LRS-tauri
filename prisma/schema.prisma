@@ -16,8 +16,8 @@ model Articles {
     articleName String @db.VarChar(500)
     propertyNumber String @db.VarChar(100)
     bookQuantity BigInt @db.BigInt
-    unitCost Decimal
-    totalCost Decimal
+    unitCost Float
+    totalCost Float
     remarks String @db.Text
 }
 
