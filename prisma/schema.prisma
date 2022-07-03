@@ -35,6 +35,6 @@ model Transactions {
     book Books @relation(fields: [bookId], references: [bookId])
     person Persons @relation(fields: [personId], references: [personId])
     dateBorrowed DateTime @db.Date()
-    dateReturned DateTime @db.Date()
+    dateReturned DateTime? @db.Date()
     quantity BigInt @db.BigInt()
 }
