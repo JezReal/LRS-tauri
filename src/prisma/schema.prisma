@@ -1,0 +1,40 @@
+datasource db {
+    provider = "mysql"
+    url = env("DATABASE_URL")
+}
+
+model Books {
+    bookId BigInt @id @db.BigInt @default(autoincrement())
+    bookDescription String @db.VarChar(500) 
+    bookQuantity BigInt @db.BigInt
+    transactions Transactions?
+}
+
+model Articles {
+    articleId BigInt @id @db.BigInt @default(autoincrement())
+    dateAcquired DateTime @db.Date()
+    articleName String @db.VarChar(500)
+    propertyNumber String @db.VarChar(100)
+    bookQuantity BigInt @db.BigInt
+    unitCost Decimal
+    totalCost Decimal
+    remarks String @db.Text
+}
+
+model Persons {
+    personId BigInt @id @db.BigInt @default(autoincrement())
+    firstName String 
+    lastName String
+    transactions Transactions?
+}
+
+model Transactions {
+    transactionId BigInt @id @db.BigInt @default(autoincrement())
+    bookId BigInt @db.BigInt @unique
+    personId BigInt @db.BigInt @unique
+    book Books @relation(fields: [bookId], references: [bookId])
+    person Persons @relation(fields: [personId], references: [personId])
+    dateBorrowed DateTime @db.Date()
+    dateReturned DateTime @db.Date()
+    quantity BigInt @db.BigInt()
+}
